@@ -1,0 +1,40 @@
+\documentclass{llncs}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{enumerate}
+\usepackage{amssymb,amsmath}
+\usepackage{enumitem}
+\usepackage{verbatim}
+
+\newcommand{\norm}[1]{\left\| #1 \right\|}
+
+\begin{document}
+
+\title{Ultrametric query algorithms}
+
+
+\author{}
+\institute{Institute of Mathematics and Computer Science,
+ University of Latvia,\\ Rai\c na bulv\= aris 29, Riga, LV-1459, Latvia
+}
+
+
+
+\maketitle
+
+\begin{abstract} 
+%TODO: Jāmaina
+The work explores an alternative definition of query algorithms which anticipates the use of $p$-adic numbers or their ordered tuples as amplitudes. The reader is introduced to the definition of $p$-adic numbers and their main properties and operations. Afterwards the notions of deterministic and randomized query algorithms is introduced which is then altered to encompass the use of $p$-adic numbers as amplitudes. This leads to the definition of p-ultrametric query algorithms (or simply – ultrametric query algorithms). The work explores the properties of a number of realizations of ultrametric query algorithms for computing a set of different classes of functions. These results are compared to equivalent deterministic realizations to show advantages of this new definition in terms of query complexity.
+\end{abstract} 
+
+
+
+\section{Introduction}
+%TODO: Jāmaina
+When formalizing the notion of an algorithm one has to define how indeterminism is treated in the given system. Classically this has led to a number of different algorithm paradigms among which the most well-known are deterministic algorithms in which probabilistic events and indeterminism is not allowed, probabilistic algorithms in which indeterminism is classically expressed as a real number within the interval of [0,1] and quantum algorithms in which indeterminism is described with the help of complex numbers called amplitude of probabilities and probabilistic combinations of amplitudes conventionally described by density matrices.
+
+However, in other branches of science like physics [?], chemistry [?] and molecular biology [?] a different notion of indeterminism has been introduced called $p$-adic numbers.
+
+It is natural to seek for a way to adopt $p$-adic  numbers as a means of describing indeterminism in algorithm formalizations. Rūsiņš Freivalds in his paper [?] has considered alternative definition of probabilistic automata and Turing machine which use $p$-adic numbers as amplitudes as well as an alternative definition of query algorithms which differ from classical definitions with the use of $p$-adic numbers to describe the amplitudes of queries. This has led to the definition of ultrametric query algorithms.
+In this paper we explore query algorithms with $p$-adic number amplitudes. The results of this work show that ultrametric query algorithms have an advantage over classical definitions. In many cases an ultrametric query algorithm can be constructed with significantly smaller complexity than its deterministic counterparts'.
+\end{document}
