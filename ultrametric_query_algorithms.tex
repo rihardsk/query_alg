@@ -5,6 +5,7 @@
 \usepackage{amssymb,amsmath}
 \usepackage{enumitem}
 \usepackage{verbatim}
+\usepackage{natbib}
 
 \newcommand{\norm}[1]{\left\| #1 \right\|}
 
@@ -38,9 +39,9 @@ We explore an alternative definition of query algorithms which anticipates the u
 %TODO: Jāmaina
 When formalizing the notion of an algorithm one has to define how indeterminism is treated in the given system. Classically this has led to a number of different algorithm paradigms among which the most well-known are deterministic algorithms in which probabilistic events and indeterminism is not allowed, probabilistic algorithms in which indeterminism is classically expressed as a real number within the interval of [0,1] and quantum algorithms in which indeterminism is described with the help of complex numbers called amplitude of probabilities and probabilistic combinations of amplitudes conventionally described by density matrices.
 
-However, in other branches of science like physics [?], chemistry [?] and molecular biology [?] a different notion of indeterminism has been introduced called $p$-adic numbers.
+However, in other branches of science like physics \cite{VSV95}, chemistry \cite{Koz06} and molecular biology \cite{Dra09} a different notion of indeterminism has been introduced called $p$-adic numbers.
 
-It is natural to seek for a way to adopt $p$-adic  numbers as a means of describing indeterminism in algorithm formalizations. Rūsiņš Freivalds in his paper [?] has considered alternative definition of probabilistic automata and Turing machine which use $p$-adic numbers as amplitudes as well as an alternative definition of query algorithms which differ from classical definitions with the use of $p$-adic numbers to describe the amplitudes of queries. This has led to the definition of ultrametric query algorithms.
+It is natural to seek for a way to adopt $p$-adic  numbers as a means of describing indeterminism in algorithm formalizations. Rūsiņš Freivalds in his paper \cite{Rus12} has considered alternative definition of probabilistic automata and Turing machine which use $p$-adic numbers as amplitudes as well as an alternative definition of query algorithms which differ from classical definitions with the use of $p$-adic numbers to describe the amplitudes of queries. This has led to the definition of ultrametric query algorithms.
 In this paper we explore query algorithms with $p$-adic number amplitudes. The results of this work show that ultrametric query algorithms have an advantage over classical definitions. In many cases an ultrametric query algorithm can be constructed with significantly smaller complexity than its deterministic counterparts'.
 
 \section{$p$-adic numbers}
@@ -51,8 +52,13 @@ Conventionally the query algorithm model considers a Boolean function $f:\{0,1\}
 
 Deterministic query algorithms can be represented by a binary decision tree; hence for each query there are exactly 2 branches that represent the next action carried out by the algorithm depending on whether the result was 1 or 0. The complexity of an algorithm is equal to the greatest possible number of consecutive queries made to compute the result of the function on arbitrary input data.
 
-Probabilistic query algorithms on the other hand aren’t necessarily binary. Each query can be followed by an arbitrary number of branches each carried out with a probability between 0 and 1 (inclusive) with the sum of probabilities for each query being equal to 1. The probability of an algorithm to give the right answer is defined as the minimum of probabilities to give the right answer on arbitrary input data%TODO atsauces
-.
+Probabilistic query algorithms on the other hand aren't necessarily binary. Each query can be followed by an arbitrary number of branches each carried out with a probability between 0 and 1 (inclusive) with the sum of probabilities for each query being equal to 1. The probability of an algorithm to give the right answer is defined as the minimum of probabilities to give the right answer on arbitrary input data \cite{Buh02} \cite{Vas10}
 
+\bibliographystyle{te}
+
+%\bibliography{bibliography}
+\bibliographystyle{plainnat}
 
 \end{document}
+
+
