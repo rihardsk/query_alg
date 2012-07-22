@@ -42,4 +42,17 @@ However, in other branches of science like physics [?], chemistry [?] and molecu
 
 It is natural to seek for a way to adopt $p$-adic  numbers as a means of describing indeterminism in algorithm formalizations. Rūsiņš Freivalds in his paper [?] has considered alternative definition of probabilistic automata and Turing machine which use $p$-adic numbers as amplitudes as well as an alternative definition of query algorithms which differ from classical definitions with the use of $p$-adic numbers to describe the amplitudes of queries. This has led to the definition of ultrametric query algorithms.
 In this paper we explore query algorithms with $p$-adic number amplitudes. The results of this work show that ultrametric query algorithms have an advantage over classical definitions. In many cases an ultrametric query algorithm can be constructed with significantly smaller complexity than its deterministic counterparts'.
+
+\section{$p$-adic numbers}
+%TODO
+
+\section{Query algorithms}
+Conventionally the query algorithm model considers a Boolean function $f:\{0,1\}\rightarrow\{0,1\}$ with the values of its arguments $(x_1,x_2,\ldots,x_n)$ locked in a black box. The definition of the function is known and queries can be made to access the values of arguments in the black box. The task of the algorithm is to compute the result by making queries. Each query can be dependent on the result of previous queries.
+
+Deterministic query algorithms can be represented by a binary decision tree; hence for each query there are exactly 2 branches that represent the next action carried out by the algorithm depending on whether the result was 1 or 0. The complexity of an algorithm is equal to the greatest possible number of consecutive queries made to compute the result of the function on arbitrary input data.
+
+Probabilistic query algorithms on the other hand aren’t necessarily binary. Each query can be followed by an arbitrary number of branches each carried out with a probability between 0 and 1 (inclusive) with the sum of probabilities for each query being equal to 1. The probability of an algorithm to give the right answer is defined as the minimum of probabilities to give the right answer on arbitrary input data%TODO atsauces
+.
+
+
 \end{document}
