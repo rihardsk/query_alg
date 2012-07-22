@@ -6,6 +6,7 @@
 \usepackage{enumitem}
 \usepackage{verbatim}
 \usepackage{natbib}
+\usepackage{todonotes}
 
 \newcommand{\norm}[1]{\left\| #1 \right\|}
 
@@ -52,8 +53,66 @@ Conventionally the query algorithm model considers a Boolean function $f:\{0,1\}
 
 Deterministic query algorithms can be represented by a binary decision tree; hence for each query there are exactly 2 branches that represent the next action carried out by the algorithm depending on whether the result was 1 or 0. The complexity of an algorithm is equal to the greatest possible number of consecutive queries made to compute the result of the function on arbitrary input data.
 
-Probabilistic query algorithms on the other hand aren't necessarily binary. Each query can be followed by an arbitrary number of branches each carried out with a probability between 0 and 1 (inclusive) with the sum of probabilities for each query being equal to 1. The probability of an algorithm to give the right answer is defined as the minimum of probabilities to give the right answer on arbitrary input data \cite{Buh02} \cite{Vas10}
+Probabilistic query algorithms on the other hand aren't necessarily binary. Each query can be followed by an arbitrary number of branches each carried out with a probability between 0 and 1 (inclusive) with the sum of probabilities for each query being equal to 1. The probability of an algorithm to give the right answer is defined as the minimum of probabilities to give the right answer on arbitrary input data \cite{Buh02} \cite{Vas10}.
 
+
+\section{p-ultrametric query algorithms}
+\subsection{Definition}
+The definition of p-ultrametric query algorithms is based on the definition of probabilistic query algorithms in which probabilities are replaced with rational number amplitudes. The amplitude of a state is computed similarly to probability to reach the state in a probabilistic algorithm. The result of the algorithm is computed by computing the p-norm of an end state. The result 0 or 1 is returned depending on whether the p-norm exceeds a previously defined threshold value.
+
+The algorithm model obtained this way is in many ways similar to the model of quantum query algorithms since amplitudes in both models are treated likewise \cite{Amb02} \cite{Vas10}. Also the complexity of an ultrametric query algorithm is defined similarly it is the maximum number of consequent queries over all branches.
+
+From here on we will not restrict ourselves to using Boolean functions only. A more general class of functions $f:\natural^n \rightarrow \{0,1\}$ is considered.
+
+\subsection{Results}
+\subsubsection{Boolean functions}
+Ultrametric realizations of query algorithms for different Boolean functions show a dramatic decrease in complexity when compared to corresponding deterministic query algorithms. For example if we consider the $n$-ary $AND$ function it can be shown that the deterministic query complexity of this function is $n$ A corresponding ultrametric query algorithm however can be constructed with complexity equal to 1.
+\missingfigure{algoritms n-AND funkcijai}
+
+The threshold value applied to the $p$-norm of the end state is 0 – the answer 1 is given if the norm equals 0 and the answer 0 is returned if the norm is $>0$. The amplitude of the end state is 0 if and only if all of the arguments are 1. Note that this schema is valid for any prime number $>n$. The query complexity of an ultrametric algorithm can be further decreased if rational number tuples are allowed as amplitudes. Here the threshold is applied to the sum of p-norms of all of the components of the end state's amplitude (which again will be called the end state's amplitude's $p$-norm for simplicity). The class of such modified ultrametric query algorithms is called $n$-extended $p$-ultrametric query algorithms and were introduced by K. J\= eri\c n\v s \cite{Jer12}.
+
+An example to calculate function $f(x_1,x_2,x_3,x_4)=(x_1\vee x_2)\wedge (x_3\vee x_4)$ is shown below %TODO atsauce
+.
+
+\missingfigure{algoritms}
+
+The threshold in this case is 2 – algorithm returns 1 if the end $p$-norm is $<2$.
+
+\subsubsection{Permutations}
+One class of permutations that are somewhat interesting with regard to their ultrametric realizations is permutations on finite geometries. If two ultrametric query algorithms for computing a function that tells whether a given permutation preserves a hypercube are compared from which one is an $n$-extended variation then it can be noted that while the $n$-extended variant has a smaller complexity it comes with a price of an enormous increase in the number of components of the amplitudes.
+
+\missingfigure{alg hiperkuba permutacijai}
+
+In %TODO atsauce
+the figure an ultrametric query algorithm that checks whether a given permutation preserves all of the edges of a hypercube is shown. The value $a_i$ is equal to 0 if the vertices corresponding to the $i$-th query block are connected and 1 otherwise. Here the threshold value can be picked as 0, since hypercube is preserved if and only if all of its edges are preserved. The schema works for any prime number $\geq 37$.
+
+\missingfigure{n-paplasinaitais variants hiperkuba algoritmam}
+
+In Figure 4 a different approach is used. Here the given permutation is compared to a list of all valid permutations which are numbered from 1 to $n$. The values of amplitudes returned are
+$$a_{i,j}=\begin{cases}
+0, & if in j-th permutation the value of i-th point is x_i \\
+1, & otherwise
+\end{cases}$$
+At the end the end state has amplitude $(\beta_1,\beta_2,\dots,\beta_n)$ where some number $\beta_i$ is equal to 0 if and only if the given permutation coincides with one of valid permutations. Since such $\beta_i$ can be only one the threshold can be chosen as 384 i.e. the number of valid permutations. The schema works for any prime number $\geq 17$.
+
+As seen in the examples above. The decrease in complexity has been achieved at a cost of returning amplitudes of a very large length.
+
+\subsubsection{Other functions}
+While the algorithms described earlier show a considerable decrease in complexity compared to deterministic query algorithms. An interesting result is existence of a class of functions for which the decrease in complexity can be achieved only for a specific prime number.
+
+Let us consider a function
+$$
+f(x_n,x_{n-1},\dots,x_0)=\begin{cases}
+1, & if the numbers \overline{x_nx_{n-1}\dots x_0} is divisible by 7 \\
+0, & otherwise
+\end{cases}
+$$
+where $(x_n,x_{n-1},\dots,x_0) \in \{0-9\}^{n+1}$.
+\missingfigure{skaitla dalisanas algoritms}
+
+In the figure shown above it can be seen that the amplitude of the end state when the algorithm has finished is $a=x_n*10^n+x_{n-1}*10^{n-1}+\cdots+x_0*10^0$ i.e. the given number. By the definition of p-norm the value $||a||_7$ is $<1$ if $a$ a is divisible by 7 and exactly 1 if it is not, hence the threshold value can be chosen as 1.
+
+Note that a similar $p$-ultrametric algorithm that checks whether a number is divisible by $p$ can be constructed for any prime number $p$.
 %\bibliographystyle{te}
 
 \bibliographystyle{plainnat}
