@@ -159,7 +159,23 @@ At the end the end state has amplitude $(\beta_1,\beta_2,\dots,\beta_n)$ where s
 
 As seen in the examples above. The decrease in complexity has been achieved at a cost of returning amplitudes of a very large length.
 
-Now we will look at functions on permutations on graphs. If graph G has vertices $1,2,3,\dots,k$ we say that a permutation preserves graph G if for every pair (i,j)
+Now we will look at functions on permutations on graphs. If graph $G$ has vertices $1,2,3,\dots,k$ we say that a $k$-permutation preserves graph $G$ if for every pair $(i,j)$ the following holds - vertices $i$ and $j$ are connected with an edge in graph $G$ if and only if vertices $y_i$ and $y_j$ are connected in $G$.
+
+\begin{theorem}
+For every finite graph $G$ for every sufficiently large prime $p$ exists a $p$-ultrametric query algorithm with complexity of 2 that checks whether the given permutation (contained in a black box) preserves graph $G$.
+\end{theorem}
+\begin{proof}
+Since the graph $G$ is known we ask for every pair $(i,j)$ whether $(i,j)\in G$ iff $(y_i, y_j)\in G$. If so then we ad $\frac{p}{r}$ to a designated state, where $r=\frac{k(k-1)}{2}$. If the permutation preserves G then the sum of amplitudes in the designated state equals $1$. Otherwise the sum is $<1$.
+\qed
+\end{proof}
+
+\begin{theorem}
+For every natural number $k$ there is such a graph $G_k$ with $k$ nodes that a deterministic query algorithm needs to make at least $(k-2)$ queries to determine whether a permutation preserves the graph.
+\end{theorem}
+\begin{proof}
+The graph $G_k$ is a cycle of length $k$. If the permutation is not a cyclical shift $y_i = i+m(mod$ $k)$, it does not preserve the graph. If the permutation does preserve the graph but the values of two nodes are not yet known, there is still the possibility that the two values have been switched from the positions they would need to be for the permutation to preserve the graph, but if it is so, the permutation is not correct.
+\qed
+\end{proof}
 
 \subsubsection{Other functions}
 While the algorithms described earlier show a considerable decrease in complexity compared to deterministic query algorithms. An interesting result is existence of a class of functions for which the decrease in complexity can be achieved only for a specific prime number.
