@@ -8,6 +8,8 @@
 \usepackage{natbib}
 \usepackage{todonotes}
 
+\graphicspath{{Images/}}
+
 \newcommand{\norm}[1]{\left\| #1 \right\|}
 
 \begin{document}
@@ -34,8 +36,6 @@ R\= usi\c n\v s Freivalds}
 We explore an alternative definition of query algorithms which anticipates the use of $p$-adic numbers or their ordered tuples as amplitudes. The reader is introduced to the definition of $p$-adic numbers and their main properties and operations. Afterwards the notions of deterministic and randomized query algorithms is introduced which is then altered to encompass the use of $p$-adic numbers as amplitudes. This leads to the definition of $p$-ultrametric query algorithms (or simply – ultrametric query algorithms). We examine a set of different classes of functions showing that while they have a linear deterministic query complexity a respective $p$-ultrametric query algorithm can be constructed to have only a constant query complexity. Some of these algorithms are further examined.
 \end{abstract} 
 
-
-
 \section{Introduction}
 %TODO: Jāmaina
 When formalizing the notion of an algorithm one has to define how indeterminism is treated in the given system. Classically this has led to a number of different algorithm paradigms among which the most well-known are deterministic algorithms in which probabilistic events and indeterminism is not allowed, probabilistic algorithms in which indeterminism is classically expressed as a real number within the interval of [0,1] and quantum algorithms in which indeterminism is described with the help of complex numbers called amplitude of probabilities and probabilistic combinations of amplitudes conventionally described by density matrices.
@@ -55,7 +55,6 @@ Deterministic query algorithms can be represented by a binary decision tree; hen
 
 Probabilistic query algorithms on the other hand aren't necessarily binary. Each query can be followed by an arbitrary number of branches each carried out with a probability between 0 and 1 (inclusive) with the sum of probabilities for each query being equal to 1. The probability of an algorithm to give the right answer is defined as the minimum of probabilities to give the right answer on arbitrary input data \cite{Buh02} \cite{Vas10}.
 
-
 \section{p-ultrametric query algorithms}
 \subsection{Definition}
 The definition of p-ultrametric query algorithms is based on the definition of probabilistic query algorithms in which probabilities are replaced with rational number amplitudes. The amplitude of a state is computed similarly to probability to reach the state in a probabilistic algorithm. The result of the algorithm is computed by computing the p-norm of an end state. The result 0 or 1 is returned depending on whether the p-norm exceeds a previously defined threshold value.
@@ -67,26 +66,46 @@ From here on we will not restrict ourselves to using Boolean functions only. A m
 \subsection{Results}
 \subsubsection{Boolean functions}
 Ultrametric realizations of query algorithms for different Boolean functions show a dramatic decrease in complexity when compared to corresponding deterministic query algorithms. For example if we consider the $n$-ary $AND$ function it can be shown that the deterministic query complexity of this function is $n$ A corresponding ultrametric query algorithm however can be constructed with complexity equal to 1.
-\missingfigure{algoritms n-AND funkcijai}
+
+\begin{figure}
+	\centering
+	\includegraphics{n-and.png}
+	\caption{Ultrametric query algorithm for n-ary AND}
+	  \label{n_and}
+\end{figure}
 
 The threshold value applied to the $p$-norm of the end state is 0 – the answer 1 is given if the norm equals 0 and the answer 0 is returned if the norm is $>0$. The amplitude of the end state is 0 if and only if all of the arguments are 1. Note that this schema is valid for any prime number $>n$. The query complexity of an ultrametric algorithm can be further decreased if rational number tuples are allowed as amplitudes. Here the threshold is applied to the sum of p-norms of all of the components of the end state's amplitude (which again will be called the end state's amplitude's $p$-norm for simplicity). The class of such modified ultrametric query algorithms is called $n$-extended $p$-ultrametric query algorithms and were introduced by K. J\= eri\c n\v s \cite{Jer12}.
 
 An example to calculate function $f(x_1,x_2,x_3,x_4)=(x_1\vee x_2)\wedge (x_3\vee x_4)$ is shown below %TODO atsauce
-.
 
-\missingfigure{algoritms}
+\begin{figure}
+	\centering
+	\includegraphics{or_and_or.png}
+	\caption{Ultrametric algorithm for function $f(x_1,x_2,x_3,x_4 )=(x_1\vee x_2 )\wedge (x_3\vee x_4 )$}
+	  \label{or_and_or}
+\end{figure}
 
 The threshold in this case is 2 – algorithm returns 1 if the end $p$-norm is $<2$.
 
 \subsubsection{Permutations}
 One class of permutations that are somewhat interesting with regard to their ultrametric realizations is permutations on finite geometries. If two ultrametric query algorithms for computing a function that tells whether a given permutation preserves a hypercube are compared from which one is an $n$-extended variation then it can be noted that while the $n$-extended variant has a smaller complexity it comes with a price of an enormous increase in the number of components of the amplitudes.
 
-\missingfigure{alg hiperkuba permutacijai}
+\begin{figure}
+	\centering
+	\includegraphics{hypercube_2block.png}
+	\caption{Ultrametric query algorithm to compute whether a permutation preserves a hypercube with complexity of 2}
+	  \label{hyper2}
+\end{figure}
 
 In %TODO atsauce
 the figure an ultrametric query algorithm that checks whether a given permutation preserves all of the edges of a hypercube is shown. The value $a_i$ is equal to 0 if the vertices corresponding to the $i$-th query block are connected and 1 otherwise. Here the threshold value can be picked as 0, since hypercube is preserved if and only if all of its edges are preserved. The schema works for any prime number $\geq 37$.
 
-\missingfigure{n-paplasinaitais variants hiperkuba algoritmam}
+\begin{figure}
+	\centering
+	\includegraphics{hypercube_1block.png}
+	\caption{$n$-extended ultrametric query algorithm to compute whether a permutation preserves a hypercube with complexity of 1}
+	  \label{hyper1}
+\end{figure}
 
 In Figure 4 a different approach is used. Here the given permutation is compared to a list of all valid permutations which are numbered from 1 to $n$. The values of amplitudes returned are
 $$a_{i,j}=\begin{cases}
@@ -108,7 +127,12 @@ f(x_n,x_{n-1},\dots,x_0)=\begin{cases}
 \end{cases}
 $$
 where $(x_n,x_{n-1},\dots,x_0) \in \{0-9\}^{n+1}$.
-\missingfigure{skaitla dalisanas algoritms}
+\begin{figure}
+	\centering
+	\includegraphics{divisibility.png}
+	\caption{$7$-ultrametric query algorithm that checks number's divisibility by 7}
+	  \label{div}
+\end{figure}
 
 In the figure shown above it can be seen that the amplitude of the end state when the algorithm has finished is $a=x_n*10^n+x_{n-1}*10^{n-1}+\cdots+x_0*10^0$ i.e. the given number. By the definition of p-norm the value $||a||_7$ is $<1$ if $a$ a is divisible by 7 and exactly 1 if it is not, hence the threshold value can be chosen as 1.
 
