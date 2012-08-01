@@ -46,7 +46,50 @@ It is natural to seek for a way to adopt $p$-adic  numbers as a means of describ
 In this paper we explore query algorithms with $p$-adic number amplitudes. The results of this work show that ultrametric query algorithms have an advantage over classical definitions. In many cases an ultrametric query algorithm can be constructed with significantly smaller complexity than its deterministic counterparts'.
 
 \section{$p$-adic numbers}
-%TODO
+\subsection{Introduction to $p$-adic numbers}
+A $p$-adic digit is a natural number between 0 and $p-1$ (inclusive) where $p$ is an arbitrary prime number. A $p$-adic integer is a sequence $(a_i)_{i \in N}$, where $a_i$ is a $p$-adic integer. This can also be written as $\cdots a_i \cdots a_2a_1a_0$. 
+This sequence corresponds to the natural number $\sum\limits_{i=0}^{+\infty}a_ip^i$, where $p$ is the chosen prime number and the base of the number system. This sequence is infinite to the left side. For natural numbers, only a finite number of digits will be non-zero. Given a natural number $n$, the non-zero part of its $p$-adic representation will be exactly the same as the number's representation in base $p$. For example, the decimal number 42 is written in base 5 as 132 and its representation in 5-adic numbers is $\cdots 0 \cdots 0132$.
+
+For negative numbers and non-integers, the situation is considerably different. As an example, let's consider the number $\frac{1}{2}$ and its 5-adic representation. Adding $\frac{1}{2}$ to itself returns 1, whose 5-adic representation is $\cdots 0 \cdots 001$. Knowing this, $\frac{1}{2}$ can be expressed in 5-adic notation like this:
+$$
+\begin{tabular}{rrrrrrrrr|}
+$\cdots$ &2 &2 &2 &2 &2 &3\\
+$\cdots$ &2 &2 &2 &2 &2 &3\\
+\hline
+\hline
+$\cdots$ &0 &0 &0 &0 &0 &1\\
+\hline
+\end{tabular}
+$$
+Almost any rational number can thus be expressed as a $p$-adic integer. The only exceptions for any given $p$ are numbers in the form $\frac{a}{b}$, where $a$ is not divisible by $p$, but $b$ is.
+
+Numbers that cannot be expressed as $p$-adic integers can, however, be expressed as $p$-adic numbers. As an example, let's look at the 5-adic representation of $\frac{1}{5}$, which we know cannot be expressed as a 5-adic integer. Instead, it's expressed as $\cdots 0 \cdots 000.1$. When writing numbers like this, it's important that the $p$-adic representation is still infinite to the left and finite to the right.
+
+The basic arithmetic operations - addition, subtraction, multiplication and division - can be performed on $p$-adic numbers just as well as their decimal representations. Addition, subtraction and multiplication also work in $p$-adic integers, but division is not guaranteed to - just as division of integers often leads to rational numbers, so division of $p$-adic integers can lead to $p$-adic numbers.
+
+It is fairly obvious that for every rational number $n$ there is a prime $p$ that $n$ can be expressed as a $p$-adic integer. The same does not hold for real numbers. Irrational numbers cannot be expressed as $p$-adic numbers. This does not mean, however, that the set of $p$-adic numbers for any given $p$ is a subset of the real numbers - there is a continuum of $p$-adic numbers that do not correspond to any real number. \cite{Rus12}
+\subsection{$p$-adic absolute values}
+Let $X$ be a nonempty set. A function $d: X \times X \rightarrow R_{\geq 0}$ is called a metric in this set if it satisfies the following properties:
+\begin{enumerate}
+\item $d(x,y) = 0$ if and only if $x = y$,\\
+\item $d(x,y) = d(y,x)$,\\
+\item $d(x,y) \leq d(x,z) + d(z,y)$ for all $z \in X$.
+\end{enumerate}
+A metric function is used to determine the distance between two elements of a set. An element's distance from zero $d(x,0)$ is called its norm or absolute value and is denoted by $||x||$.
+
+The norm of an element satisfies the following properties:
+\begin{enumerate}
+\item $||x||=0$ if and only if $x=0$,\\
+\item $||x*y|| = ||x||*||y||$,\\
+\item $||x+y|| \leq ||x||+||y||$ (the triangle inequality).
+\end{enumerate}
+If the third property can be replaced by its stronger variant - the strong triangle inequality $||x+y|| \leq max(||x||,||y||)$, the norm is called ultrametric. Otherwise, it is called Archimedean. \cite{Rus12}
+
+For every rational non-zero number $\alpha$ there is a unique prime factorization - $\alpha = \pm 2^{\alpha_2}3^{\alpha_3}5^{\alpha_5}7^{\alpha_7} \cdots$, where all $\alpha_i$ are integers, only a finite number of which are non-zero. The $p$-adic absolute value (also called the $p$-norm) of a rational number $\alpha$ is 
+$||x||_p = \begin{cases}
+p^{\alpha_p}, if \alpha \neq 0 \\
+0, if \alpha = 0
+\end{cases} $
 
 \section{Query algorithms}
 Conventionally the query algorithm model considers a Boolean function $f:\{0,1\}\rightarrow\{0,1\}$ with the values of its arguments $(x_1,x_2,\ldots,x_n)$ locked in a black box. The definition of the function is known and queries can be made to access the values of arguments in the black box. The task of the algorithm is to compute the result by making queries. Each query can be dependent on the result of previous queries.
@@ -98,7 +141,7 @@ One class of permutations that are somewhat interesting with regard to their ult
 \end{figure}
 
 In %TODO atsauce
-the figure an ultrametric query algorithm that checks whether a given permutation preserves all of the edges of a hypercube is shown. The value $a_i$ is equal to 0 if the vertices corresponding to the $i$-th query block are connected and 1 otherwise. Here the threshold value can be picked as 0, since hypercube is preserved if and only if all of its edges are preserved. The schema works for any prime number $\geq 37$.
+the figure above an ultrametric query algorithm that checks whether a given permutation preserves all of the edges of a hypercube is shown. The value $a_i$ is equal to 0 if the vertices corresponding to the $i$-th query block are connected and 1 otherwise. Here the threshold value can be picked as 0, since hypercube is preserved if and only if all of its edges are preserved. The schema works for any prime number $\geq 37$.
 
 \begin{figure}
 	\centering
@@ -107,7 +150,7 @@ the figure an ultrametric query algorithm that checks whether a given permutatio
 	  \label{hyper1}
 \end{figure}
 
-In Figure 4 a different approach is used. Here the given permutation is compared to a list of all valid permutations which are numbered from 1 to $n$. The values of amplitudes returned are
+In the figure above a different approach is used. Here the given permutation is compared to a list of all valid permutations which are numbered from 1 to $n$. The values of amplitudes returned are
 $$a_{i,j}=\begin{cases}
 0, & if in j-th permutation the value of i-th point is x_i \\
 1, & otherwise
@@ -115,6 +158,8 @@ $$a_{i,j}=\begin{cases}
 At the end the end state has amplitude $(\beta_1,\beta_2,\dots,\beta_n)$ where some number $\beta_i$ is equal to 0 if and only if the given permutation coincides with one of valid permutations. Since such $\beta_i$ can be only one the threshold can be chosen as 384 i.e. the number of valid permutations. The schema works for any prime number $\geq 17$.
 
 As seen in the examples above. The decrease in complexity has been achieved at a cost of returning amplitudes of a very large length.
+
+Now we will look at functions on permutations on graphs. If graph G has vertices $1,2,3,\dots,k$ we say that a permutation preserves graph G if for every pair (i,j)
 
 \subsubsection{Other functions}
 While the algorithms described earlier show a considerable decrease in complexity compared to deterministic query algorithms. An interesting result is existence of a class of functions for which the decrease in complexity can be achieved only for a specific prime number.
