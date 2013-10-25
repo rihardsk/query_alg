@@ -86,7 +86,7 @@ The norm of an element satisfies the following properties:
 If the third property can be replaced by its stronger variant - the strong triangle inequality $||x+y|| \leq max(||x||,||y||)$, the norm is called ultrametric. Otherwise, it is called Archimedean. \cite{Rus12}
 
 For every rational non-zero number $\alpha$ there is a unique prime factorization - $\alpha = \pm 2^{\alpha_2}3^{\alpha_3}5^{\alpha_5}7^{\alpha_7} \cdots$, where all $\alpha_i$ are integers, only a finite number of which are non-zero. The $p$-adic absolute value (also called the $p$-norm) of a rational number $\alpha$ is 
-$||x||_p = \begin{cases}
+$||\alpha||_p = \begin{cases}
 p^{-\alpha_p}, if \alpha \neq 0 \\
 0, if \alpha = 0
 \end{cases} $
@@ -140,7 +140,7 @@ An example to calculate function $f(x_1,x_2,x_3,x_4)=(x_1\vee x_2)\wedge (x_3\ve
 	  \label{or_and_or}
 \end{figure}
 
-The threshold in this case is 2: the algorithm returns 1 if the end $p$-norm is $<2$.
+The threshold in this case is 2: the algorithm returns 1 if the end $p$-norm is $\geq2$.
 
 \subsubsection{Permutations}
 One class of permutations that are somewhat interesting with regard to their ultrametric realizations is permutations on finite geometries. If two ultrametric query algorithms for computing a function that tells whether a given permutation preserves a hypercube are compared from which one is an $n$-extended variation then it can be noted that while the $n$-extended variant has a smaller complexity it comes with a price of an enormous increase in the number of components of the amplitudes.
@@ -173,10 +173,10 @@ As seen in the examples above, the decrease in complexity has been achieved at a
 Now we will look at functions on permutations on graphs. If graph $G$ has vertices $1,2,3,\dots,k$ we say that a $k$-permutation preserves graph $G$ if for every pair $(i,j)$ the following holds - vertices $i$ and $j$ are connected with an edge in graph $G$ if and only if vertices $y_i$ and $y_j$ are connected in $G$.
 
 \begin{theorem}
-For every finite graph $G$ for every sufficiently large prime $p$ exists a $p$-ultrametric query algorithm with complexity of 2 that checks whether the given permutation (contained in a black box) preserves graph $G$.
+For every finite graph $G$ for every sufficiently large prime $p$ there exists a $p$-ultrametric query algorithm with complexity of 2 that checks whether the given permutation (contained in a black box) preserves graph $G$.
 \end{theorem}
 \begin{proof}
-Since the graph $G$ is known we ask for every pair $(i,j)$ whether $(i,j)\in G$ iff $(y_i, y_j)\in G$. If so then we ad $\frac{p}{r}$ to a designated state, where $r=\frac{k(k-1)}{2}$. If the permutation preserves G then the sum of amplitudes in the designated state equals $1$. Otherwise the sum is $<1$.
+Since the graph $G$ is known we ask for every pair $(i,j)$ whether $(i,j)\in G$ iff $(y_i, y_j)\in G$. If so then we add $\frac{p}{r}$ to a designated state, where $r=\frac{k(k-1)}{2}$. If the permutation preserves G then the sum of amplitudes in the designated state equals $1$. Otherwise the sum is $<1$.
 \qed
 \end{proof}
 
