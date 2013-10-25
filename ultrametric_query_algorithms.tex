@@ -5,8 +5,12 @@
 \usepackage{amssymb,amsmath}
 \usepackage{enumitem}
 \usepackage{verbatim}
-%\usepackage{natbib}
+
+%izcelti atgadinajumi
 \usepackage{todonotes}
+
+%papildus matematika
+\usepackage{mathtools}
 
 \graphicspath{{Images/}}
 
@@ -198,7 +202,7 @@ f(x_n,x_{n-1},\dots,x_0)=\begin{cases}
 0, & \text{otherwise}
 \end{cases}
 $$
-where $(x_n,x_{n-1},\dots,x_0) \in \{0-9\}^{n+1}$.
+where $(x_n,x_{n-1},\dots,x_0) \in \{0 \cdots 9\}^{n+1}$ and $\overline{x_mx_{m-1}\dots x_0} \coloneqq x_m*10^m+x_{m-1}*10^{m-1}+\cdots+x_0*10^0$.
 \begin{figure}
 	\centering
 	\includegraphics{divisibility.png}
