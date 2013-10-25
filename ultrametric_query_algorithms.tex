@@ -156,23 +156,23 @@ One class of permutations that are somewhat interesting with regard to their ult
 	  \label{hyper2}
 \end{figure}
 
-In Fig. 3 an ultrametric query algorithm that checks whether a given permutation preserves all of the edges of a hypercube is shown. The value $a_i$ is equal to 0 if the vertices corresponding to the $i$-th query block are connected and 1 otherwise. Here the threshold value can be picked as 0, since hypercube is preserved if and only if all of its edges are preserved. The schema works for any prime number $\geq 37$.
+In Fig. 3 an ultrametric query algorithm that checks whether a given permutation preserves all of the edges of a 4-dimensional hypercube is shown. The value passed to the function $x = (x_1, x_2, \cdots, x_{16})$ is a permutation on the hypercube's vertices. The value $a_i$ is equal to 0 if the vertices corresponding to the $i$-th query block are connected and 1 otherwise. Here the threshold value can be picked as 0, since hypercube is preserved if and only if all of its edges are preserved. The schema works for any prime number $\geq 37$ and we achieve complexity equal to 2.
 
 \begin{figure}
 	\centering
 	\includegraphics{hypercube_1block.png}
-	\caption{$n$-extended ultrametric query algorithm to compute whether a permutation preserves a hypercube with complexity of 1}
+	\caption{$384$-extended ultrametric query algorithm to compute whether a permutation preserves a hypercube with complexity of 1}
 	  \label{hyper1}
 \end{figure}
 
-In Fig. 4 a different approach is used. Here the given permutation is compared to a list of all valid permutations which are numbered from 1 to $n$. The values of amplitudes returned are
+In Fig. 4 a different approach is used. Here the given permutation is compared to a list of all valid permutations which are numbered from 1 to $n$ where $n$ can be computed as $4! \cdot 2^4 = 384$. The values of amplitudes returned are
 $$a_{i,j}=\begin{cases}
 0, & \text{if in $j$-th permutation the value of $i$-th point is $x_i$} \\
 1, & \text{otherwise}
 \end{cases}$$
-At the end the end state has amplitude $(\beta_1,\beta_2,\dots,\beta_n)$ where some number $\beta_i$ is equal to 0 if and only if the given permutation coincides with one of valid permutations. Since such $\beta_i$ can be only one the threshold can be chosen as 384 i.e. the number of valid permutations. The schema works for any prime number $\geq 17$.
+At the end the end state has amplitude $(\beta_1,\beta_2,\dots,\beta_n)$ where some number $\beta_i$ is equal to 0 if and only if the given permutation coincides with one of valid permutations. Since such $\beta_i$ can be only one the threshold can be chosen as 384 i.e. the number of valid permutations. The schema works for any prime number $\geq 17$ and we achieve complexity equal to 1.
 
-As seen in the examples above, the decrease in complexity has been achieved at a cost of returning amplitudes of a very large length.
+As seen in the examples above, the decrease in complexity by 1 has been achieved at a cost of returning amplitudes of a very large length.
 
 Now we will look at functions on permutations on graphs. If graph $G$ has vertices $1,2,3,\dots,k$ we say that a $k$-permutation preserves graph $G$ if for every pair $(i,j)$ the following holds - vertices $i$ and $j$ are connected with an edge in graph $G$ if and only if vertices $y_i$ and $y_j$ are connected in $G$.
 
