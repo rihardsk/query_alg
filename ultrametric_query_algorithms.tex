@@ -157,7 +157,7 @@ One class of permutations that are somewhat interesting with regard to their ult
 	  \label{hyper2}
 \end{figure}
 
-In Fig. 3 an ultrametric query algorithm that checks whether a given permutation preserves all of the edges of a 4-dimensional hypercube is shown. The value passed to the function $x = (x_1, x_2, \cdots, x_{16})$ is a permutation on the hypercube's vertices. The value $a_i$ is equal to 0 if the vertices corresponding to the $i$-th query block are connected and 1 otherwise. Here the threshold value can be picked as 0, since hypercube is preserved if and only if all of its edges are preserved. The schema works for any prime number $\geq 37$ and we achieve complexity equal to 2.
+In Fig. 3 an ultrametric query algorithm that checks whether a given permutation preserves all of the edges of a 4-dimensional hypercube is shown. The value passed to the function $x = (x_1, x_2, \cdots, x_{16})$ is a permutation on the hypercube's vertices. The value $a_i$ is equal to 0 if the vertices corresponding to the $i$-th query block are connected and 1 otherwise -- each block makes two queries, for $x_j$ and $x_k$ and checks whether: $j \text{ connects to } k \Leftrightarrow x_j \text{ connects to } x_k$. Here the threshold value can be picked as 0, since hypercube is preserved if and only if all of its edges are preserved. The schema works for any prime number $\geq 37$ and we achieve complexity equal to 2.
 
 \begin{figure}
 	\centering
